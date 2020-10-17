@@ -2,6 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
+const db = require('./config/db');
+const routes = require('./src/routes');
+
 const app = express();
 
 //* middlewares
@@ -13,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //* rotues
-app.use('/api', require('./src/routes'));
+app.use('/api', routes);
 app.use('/', (_req, res, _next) => res.redirect('/api'));
 
 //* middleware error
@@ -22,7 +25,8 @@ app.use(function (err, _req, res, _next) {
   res.status(500).send('Server error, something broke!');
 });
 
-//* server on
-app.listen(3000, () => {
-  console.log('server on port 3000');
+db.sync({ force: true }).then(() => {
+  app.listen(1337, () => {
+    console.log('conected whit db and server on port 1337');
+  });
 });
