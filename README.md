@@ -1,5 +1,11 @@
 # Challenge de ingreso - Bootcamp Avanzado
 
-API and WebApp de challenge bootcamp II.
+## Pasos para levantar el proyecto :
 
-![logo-p5](https://postman-plataforma5.s3-sa-east-1.amazonaws.com/logo_plataforma_5_coding_bootcamp_azul.png)
+- Instalar dependencias dentro de cada carpeta (API y App) > `npm install`
+
+- API : `npm run server`
+- APP : `npm start`
+- Seed : `npm run seed`
+
+~ Importante: crear database con el siguiente nombre : `bc2`
