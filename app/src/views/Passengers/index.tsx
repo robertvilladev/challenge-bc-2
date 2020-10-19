@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { VFC, useEffect, useState } from "react";
 import { Row, Col, Divider, Typography } from "antd";
 
 import { get } from "../../api/index";
@@ -7,20 +7,30 @@ import { apiFetch } from "../../utils";
 // Components
 import Wrapper from "../../components/Wrapper";
 import CardC from "../../components/Card";
+import Input from "../../components/AddPassenger";
+import Loading from "../../components/Loading";
 
-const Home: FC = () => {
+const Passengers: VFC = () => {
   const [passengers, setPassengers] = useState<apiFetch[]>([]);
 
   useEffect(() => {
     get("passengers").then((res) => setPassengers(res));
-  }, [passengers.length]);
+  }, []);
 
-  console.log(passengers);
+  if (!passengers.length) return <Loading />;
 
   return (
     <>
       <Wrapper>
-        <Typography.Title level={2} style={{ textAlign: "center" }}>
+        <Typography.Title level={3} style={{ textAlign: "center" }}>
+          Agregar Pasajero
+        </Typography.Title>
+
+        <Input callback={setPassengers} />
+
+        <Divider />
+
+        <Typography.Title level={3} style={{ textAlign: "center" }}>
           Lista de pasajeros
         </Typography.Title>
 
@@ -43,4 +53,4 @@ const Home: FC = () => {
   );
 };
 
-export default Home;
+export default Passengers;

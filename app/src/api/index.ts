@@ -9,10 +9,26 @@ export const get = async (url: string) => {
   }
 };
 
-export const post = async (url: string, body: {}) => {
+export const post = async (url: string, body: any) => {
   try {
-    const response = await axios.post(`http://localhost:5000/api/${url}`, body);
-    return response.data;
+    await axios.post(`http://localhost:5000/api/${url}`, body);
+
+    const res = body.passengerId
+      ? await get(`passengers/${body.passengerId}`)
+      : await get(`passengers`);
+
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const destroy = async (url: string) => {
+  try {
+    await axios.delete(`http://localhost:5000/api/${url}`);
+
+    const res = await get(url);
+    return res;
   } catch (error) {
     console.log(error);
   }

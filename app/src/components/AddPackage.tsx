@@ -1,33 +1,30 @@
-import React, { Dispatch, FC, SetStateAction, useState } from "react";
+import React, { FC, useState } from "react";
 import { Select, Button, Alert } from "antd";
-import { post } from "../api";
+
+import { post, destroy } from "../api";
+import { IPassenger } from "../utils";
 
 type Props = {
   passengerId: number;
   total: number;
-  setPackage: Dispatch<any>;
+  setPackage: (paquete: IPassenger) => void;
 };
 
 const AddPackage: FC<Props> = ({ passengerId, total, setPackage }) => {
-  console.log(setPackage);
-
   const [category, setCategory] = useState<number | string>(0);
 
   const handlechange = async (value: number | string) => {
-    console.log(value);
     setCategory(value);
   };
 
   const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    console.log(category);
+    post("packages", { category, passengerId }).then((res) => setPackage(res));
   };
 
   const handleDelete = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    console.log("eliminar todo");
-
-    await post("packages", { category, passengerId });
+    destroy(`passengers/${passengerId}`).then((res) => setPackage(res));
   };
 
   return (
@@ -61,7 +58,7 @@ const AddPackage: FC<Props> = ({ passengerId, total, setPackage }) => {
 
       <div>
         <Button
-          disabled={total >= 3}
+          disabled={total < 1}
           danger
           onClick={handleDelete}
           type="primary"

@@ -8,7 +8,6 @@ const styles = {
   margin: "0 auto",
   marginTop: 18,
   width: "95%",
-  height: "100%",
 };
 
 export default Wrapper;

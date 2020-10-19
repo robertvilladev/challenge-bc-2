@@ -24,7 +24,7 @@ controllers.add = async (req, res, next) => {
     passenger.totalPackages = passenger.totalPackages + 1;
     await passenger.save();
 
-    res.send({ message: 'Successfully added' });
+    res.status(201).send({ message: 'Successfully added' });
   } catch (err) {
     next(err);
   }

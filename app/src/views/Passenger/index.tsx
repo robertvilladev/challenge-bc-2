@@ -1,12 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
 import { Divider, List } from "antd";
-import { RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 
 import { get } from "../../api";
 import { IPassenger, packageType } from "../../utils";
 
 import Wrapper from "../../components/Wrapper";
 import AddPackage from "../../components/AddPackage";
+import Loading from "../../components/Loading";
 
 interface RouteInfo {
   id: string;
@@ -21,12 +22,17 @@ const Passenger: FC<ComponentProps> = ({ match }) => {
     get(`passengers/${match.params.id}`).then((res) => setPassenger(res));
   }, [match.params.id]);
 
-  if (!passenger) return <div>cargando</div>;
+  if (!passenger) return <Loading />;
 
   return (
     <>
       <Wrapper>
-        <Divider orientation="left">{passenger && passenger.name}</Divider>
+        <Link to="/">
+          <Divider orientation="left">Lista de pasajeros (click acá)</Divider>
+        </Link>
+
+        <Divider orientation="center">{passenger && passenger.name}</Divider>
+
         <List
           header={
             <div style={{ fontWeight: 800 }}>

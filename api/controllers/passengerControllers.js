@@ -3,7 +3,9 @@ const { Passenger, Packages } = require('../models');
 
 controllers.getAll = async (req, res, next) => {
   try {
-    const passengers = await Passenger.findAll();
+    const passengers = await Passenger.findAll({
+      order: [['id', 'DESC']],
+    });
 
     res.status(200).json(passengers);
   } catch (err) {
@@ -50,7 +52,7 @@ controllers.add = async (req, res, next) => {
         .status(422)
         .json({ message: 'Error, fligth number is already exists' });
 
-    await Passenger.create({ name, code });
+    await Passenger.create({ name, code: code.toUpperCase() });
 
     res.status(201).json({ message: 'created successfully' });
   } catch (err) {
@@ -72,6 +74,9 @@ controllers.delete = async (req, res, next) => {
         passengerId,
       },
     });
+
+    passenger.totalPackages = 0;
+    await passenger.save();
 
     res.status(200).send({ message: 'Packages deleted successfully ' });
   } catch (err) {
