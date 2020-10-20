@@ -76,82 +76,102 @@ const packages = [
   {
     passengerId: 3,
     category: 1,
+    name: 'Valija',
   },
   {
     passengerId: 3,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 3,
     category: 3,
+    name: 'Valija',
   },
   {
     passengerId: 2,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 2,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 2,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 5,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 5,
     category: 3,
+    name: 'Valija',
   },
   {
     passengerId: 5,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 1,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 1,
     category: 1,
+    name: 'Valija',
   },
   {
     passengerId: 15,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 15,
     category: 1,
+    name: 'Valija',
   },
   {
     passengerId: 4,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 6,
     category: 1,
+    name: 'Valija',
   },
   {
     passengerId: 6,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 6,
     category: 3,
+    name: 'Valija',
   },
   {
     passengerId: 10,
     category: 2,
+    name: 'Valija',
   },
   {
     passengerId: 10,
     category: 3,
+    name: 'Valija',
   },
   {
     passengerId: 10,
     category: 3,
+    name: 'Valija',
   },
 ];
 

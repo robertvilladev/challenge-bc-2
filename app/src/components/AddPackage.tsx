@@ -3,6 +3,7 @@ import { Select, Button, Alert } from "antd";
 
 import { post, destroy } from "../api";
 import { IPassenger } from "../utils";
+import Input from "./Input";
 
 type Props = {
   passengerId: number;
@@ -12,14 +13,21 @@ type Props = {
 
 const AddPackage: FC<Props> = ({ passengerId, total, setPackage }) => {
   const [category, setCategory] = useState<number | string>(0);
+  const [input, setInput] = useState<any>({
+    name: "",
+  });
 
-  const handlechange = async (value: number | string) => {
-    setCategory(value);
-  };
+  const handlechange = (value: string): void => setCategory(value);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    post("packages", { category, passengerId }).then((res) => setPackage(res));
+    post("packages", { category, passengerId, name: input.name }).then((res) =>
+      setPackage(res)
+    );
+
+    setInput({
+      name: "",
+    });
   };
 
   const handleDelete = async (e: React.MouseEvent<HTMLElement>) => {
@@ -28,8 +36,8 @@ const AddPackage: FC<Props> = ({ passengerId, total, setPackage }) => {
   };
 
   return (
-    <form style={{ display: "flex", justifyContent: "space-around" }}>
-      <div>
+    <form style={style}>
+      <div style={style}>
         {total >= 3 ? (
           <Alert
             message="Ha alcanzado el máximo de paquetes disponibles"
@@ -38,17 +46,26 @@ const AddPackage: FC<Props> = ({ passengerId, total, setPackage }) => {
           />
         ) : (
           <>
-            {" "}
             <Select defaultValue={"Tamaño"} onChange={handlechange}>
               <Select.Option value={1}>Grande</Select.Option>
               <Select.Option value={2}>Pequeño</Select.Option>
               <Select.Option value={3}>Prenda</Select.Option>
             </Select>
+
+            <Input
+              max={15}
+              name="name"
+              placeholder="Mochila, Prendas..."
+              setValue={setInput}
+              data={input}
+              value={input.name}
+            />
+
             <Button
-              disabled={!category}
+              disabled={!category || !input.name}
               onClick={handleSubmit}
-              type="primary"
               style={{ margin: 12 }}
+              type="primary"
             >
               Agregar Paquete
             </Button>
@@ -69,6 +86,12 @@ const AddPackage: FC<Props> = ({ passengerId, total, setPackage }) => {
       </div>
     </form>
   );
+};
+
+const style = {
+  display: "flex",
+  justifyContent: "space-around",
+  alignItems: "center",
 };
 
 export default AddPackage;

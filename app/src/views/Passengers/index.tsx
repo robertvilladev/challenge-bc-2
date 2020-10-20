@@ -17,7 +17,7 @@ const Passengers: VFC = () => {
     get("passengers").then((res) => setPassengers(res));
   }, []);
 
-  if (!passengers.length) return <Loading />;
+  if (!passengers || !passengers.length) return <Loading />;
 
   return (
     <>

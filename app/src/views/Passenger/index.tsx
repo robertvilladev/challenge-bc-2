@@ -40,11 +40,11 @@ const Passenger: FC<ComponentProps> = ({ match }) => {
             </div>
           }
           bordered
-          dataSource={passenger.packages.map(
-            (item: { category: number }) => item.category
-          )}
-          renderItem={(item: number) => (
-            <List.Item>{packageType[item]} </List.Item>
+          dataSource={passenger.packages}
+          renderItem={(item: { name: string; category: number }) => (
+            <List.Item>
+              {packageType[item.category]} - {item.name}
+            </List.Item>
           )}
         />
 

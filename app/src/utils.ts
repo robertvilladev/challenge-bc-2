@@ -13,9 +13,4 @@ export interface IPassenger {
   totalPackages: number;
 }
 
-export const packageType = [
-  "",
-  "Paquete grande ( carry-on)",
-  "Paquete pequeño (cartera, mochila o bolso pequeño)",
-  "Prendas (abrigos o mantas)",
-];
+export const packageType = ["", "Grande ", "Pequeño ", "Prendas "];

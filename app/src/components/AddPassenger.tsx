@@ -1,21 +1,18 @@
-import React, { ChangeEvent, MouseEvent, FC, useState } from "react";
-import { Button, Input } from "antd";
-
+import React, { MouseEvent, FC, useState } from "react";
+import { Button } from "antd";
 import { post } from "../api";
+
+import Input from "./Input";
 
 type Props = {
   callback: (paquete: any) => void;
 };
 
 const AddPassenger: FC<Props> = ({ callback }) => {
-  const [value, setValue] = useState({
+  const [value, setValue] = useState<any>({
     name: "",
     code: "",
   });
-
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -33,25 +30,24 @@ const AddPassenger: FC<Props> = ({ callback }) => {
 
   return (
     <>
-      <form style={styles}>
+      <div style={styles}>
         <Input
-          onChange={handleInput}
-          maxLength={15}
-          placeholder="Gerald de Rivia"
-          size="middle"
+          max={15}
           value={value.name}
+          setValue={setValue}
+          data={value}
+          placeholder="Gerald de Rivia"
           name="name"
-          style={{ margin: "0 12px" }}
         />
 
         <Input
-          onChange={handleInput}
-          size="middle"
-          placeholder="A1B2C"
+          max={5}
           value={value.code}
+          setValue={setValue}
+          data={value}
+          placeholder="A1B2C"
           name="code"
-          style={{ margin: "0 12px", textTransform: "uppercase" }}
-          maxLength={5}
+          style={{ textTransform: "uppercase" }}
         />
 
         <Button
@@ -62,7 +58,7 @@ const AddPassenger: FC<Props> = ({ callback }) => {
         >
           Crear Pasajero
         </Button>
-      </form>
+      </div>
     </>
   );
 };

@@ -1,13 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 
-const Wrapper: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+const Wrapper: FC<Props> = ({ children }) => {
   return <div style={styles}>{children}</div>;
 };
 
 const styles = {
   margin: "0 auto",
   marginTop: 18,
-  width: "95%",
+  width: "85%",
 };
 
 export default Wrapper;

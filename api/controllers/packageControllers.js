@@ -3,10 +3,10 @@ const { Passenger, Packages } = require('../models');
 const controllers = {};
 
 controllers.add = async (req, res, next) => {
-  const { category, passengerId } = req.body;
+  const { category, passengerId, name } = req.body;
 
   try {
-    if (!category || !passengerId || ![1, 2, 3].includes(category))
+    if (!category || !passengerId || !name || ![1, 2, 3].includes(category))
       return res.status(400).json({ message: 'Bad Request' });
 
     const passenger = await Passenger.findByPk(passengerId);
@@ -19,7 +19,7 @@ controllers.add = async (req, res, next) => {
           'Passenger already has the maximum number of packages available',
       });
 
-    await Packages.create({ category, passengerId });
+    await Packages.create({ category, passengerId, name });
 
     passenger.totalPackages = passenger.totalPackages + 1;
     await passenger.save();
