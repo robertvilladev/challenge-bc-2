@@ -20,36 +20,34 @@ const Passengers: VFC = () => {
   if (!passengers || !passengers.length) return <Loading />;
 
   return (
-    <>
-      <Wrapper>
-        <Typography.Title level={3} style={{ textAlign: "center" }}>
-          Agregar Pasajero
-        </Typography.Title>
+    <Wrapper>
+      <Typography.Title level={3} style={{ textAlign: "center" }}>
+        Agregar Pasajero
+      </Typography.Title>
 
-        <Input callback={setPassengers} />
+      <Input callback={setPassengers} />
 
-        <Divider />
+      <Divider />
 
-        <Typography.Title level={3} style={{ textAlign: "center" }}>
-          Lista de pasajeros
-        </Typography.Title>
+      <Typography.Title level={3} style={{ textAlign: "center" }}>
+        Lista de pasajeros
+      </Typography.Title>
 
-        <Divider />
+      <Divider />
 
-        <Row style={{ width: "70%", margin: "0 auto" }}>
-          {passengers.length &&
-            passengers.map((passenger) => (
-              <Col span={6} key={passenger.id}>
-                <CardC
-                  name={passenger.name}
-                  code={passenger.code}
-                  id={passenger.id}
-                />
-              </Col>
-            ))}
-        </Row>
-      </Wrapper>
-    </>
+      <Row style={{ width: "70%", margin: "0 auto" }}>
+        {passengers.length &&
+          passengers.map((passenger) => (
+            <Col span={6} key={passenger.id}>
+              <CardC
+                name={passenger.name}
+                code={passenger.code}
+                id={passenger.id}
+              />
+            </Col>
+          ))}
+      </Row>
+    </Wrapper>
   );
 };
 

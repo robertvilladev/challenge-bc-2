@@ -1,17 +1,9 @@
-import React, { FC, ChangeEvent, Dispatch } from "react";
+import React, { FC, ChangeEvent } from "react";
 import { Input } from "antd";
 
-type Props = {
-  value: string;
-  data: object;
-  placeholder: string;
-  max: number;
-  name: string;
-  style?: object;
-  setValue: Dispatch<any>;
-};
+import { ICustomInput } from "../utils";
 
-const CustomInput: FC<Props> = ({
+const CustomInput: FC<ICustomInput> = ({
   value,
   setValue,
   data,
