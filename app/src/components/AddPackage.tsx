@@ -1,9 +1,11 @@
 import React, { FC, useState } from "react";
-import { Select, Button, Alert } from "antd";
+import { Select, Alert } from "antd";
 
 import { post, destroy } from "../api";
 import { IPassenger } from "../utils";
+
 import Input from "./Input";
+import Notification from "./Notification";
 
 type Props = {
   passengerId: number;
@@ -61,28 +63,26 @@ const AddPackage: FC<Props> = ({ passengerId, total, setPackage }) => {
               value={input.name}
             />
 
-            <Button
-              disabled={!category || !input.name}
+            <Notification
               onClick={handleSubmit}
-              style={{ margin: 12 }}
-              type="primary"
-            >
-              Agregar Paquete
-            </Button>
+              disabled={!category || !input.name}
+              name="Agregar Paquete"
+              placement="bottomLeft"
+              description="Paquete agregado correctamente"
+            />
           </>
         )}
       </div>
 
       <div>
-        <Button
-          disabled={total < 1}
-          danger
+        <Notification
           onClick={handleDelete}
-          type="primary"
-          style={{ margin: 12 }}
-        >
-          Eliminar Paquetes
-        </Button>
+          disabled={total < 1}
+          name="Eliminar Paquetes"
+          placement="bottomLeft"
+          description="Paquetes eliminados correctamente"
+          danger
+        />
       </div>
     </form>
   );

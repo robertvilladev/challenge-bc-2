@@ -11,6 +11,7 @@ const Wrapper: FC<Props> = ({ children }) => {
 const styles = {
   margin: "0 auto",
   marginTop: 18,
+  paddingBottom: 18,
   width: "85%",
 };
 
